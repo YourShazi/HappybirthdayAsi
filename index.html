@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #121212;
+            color: #fff;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+        .container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        h1 {
+            font-size: 3em;
+            animation: glow 2s infinite alternate;
+        }
+        @keyframes glow {
+            0% { text-shadow: 0 0 5px #ff4da6, 0 0 10px #ff4da6; }
+            100% { text-shadow: 0 0 20px #ff4da6, 0 0 40px #ff4da6; }
+        }
+        .button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            background: #ff4da6;
+            border: none;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        .button:hover {
+            background: #e60073;
+        }
+        .slider {
+            position: relative;
+            width: 80%;
+            max-width: 600px;
+            margin: auto;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .slides img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .prev { left: 10px; }
+        .next { right: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container" id="home">
+        <h1>Happy Birthday, ASIYA! 🎉</h1>
+        <p>Wishing you a day filled with love, joy, and laughter! 💖</p>
+        <button class="button" onclick="goToPage('message')">Next</button>
+    </div>
+   
+    <div class="container" id="message" style="display: none;">
+        <h1>A Special Message for You 💌</h1>
+        <p>Idk kesy but mujhy start sy yaqeen tha ky mai apki life ka special person ban sakonga and apko wo har khushi wo har chez deny ki puri kushish karonga jiski ap khuwaish rakhti ho. bas bas ab blush nhi karo koi dekh lyga next py click karo ! 🎂🎁</p>
+        <button class="button" onclick="goToPage('surprise')">Next</button>
+        <button class="button" onclick="goToPage('home')">Back</button>
+    </div>
+    
+    <div class="container" id="surprise" style="display: none;">
+        <h1>Surprise! 🎊🎶</h1>
+        <p>Here's something special just for you! ❤️</p>
+        <button class="button" onclick="goToPage('gallery')">Next</button>
+        <button class="button" onclick="goToPage('message')">Back</button>
+    </div>
+    
+    <div class="container" id="gallery" style="display: none;">
+        <h1>Memories with You 📸</h1>
+        <p>A collection of our best moments together! 💕</p>
+        <div class="slider">
+            <div class="slides" style="height: 400px; width: 400px;">
+                <img src="img/WhatsApp Image 2025-03-19 at 10.42.26 PM (1).jpeg" alt="Memory 1">
+                <img src="img/WhatsApp Image 2025-03-19 at 10.42.26 PM.jpeg" alt="Memory 2">
+                <img src="img/WhatsApp Image 2025-03-19 at 10.42.27 PM (1).jpeg" alt="Memory 3">
+                <img src="img/WhatsApp Image 2025-03-19 at 10.42.27 PM.jpeg" alt="Memory 4">
+                <img src="img/WhatsApp Image 2025-03-19 at 10.42.28 PM (1).jpeg" alt="Memory 5">
+                <img src="img/WhatsApp Image 2025-03-19 at 10.42.28 PM (2).jpeg" alt="Memory 6">
+                <img src="img/WhatsApp Image 2025-03-19 at 10.42.28 PM.jpeg" alt="Memory 3">
+            </div>
+            <button class="prev" onclick="prevSlide()">&#10094;</button>
+            <button class="next" onclick="nextSlide()">&#10095;</button>
+        </div>
+
+        <button class="button" onclick="goToPage('home2')">End</button>
+    </div>
+    
+    <div class="container" id="home2" style="display: none;">
+        <h1>YOU ARE ONLY MINE ASI! 🎉</h1>
+        <p>UMEED KARTA HON APKO ACHA LAGA HOOGA MUJHY OR BHI BUHT ADD KARNA THA BUT TIME KAM REH GAYA HAI SO APKO BATA DON YOU ARE THE ONLY PERSON JU MUJHY HAR 
+            SITUATION MAI KHUSH RAKH SAKTA HAI I REALY REALY MISS YOU BUT I KNOW YE APKY LIYE ACHA HAI JU AP WAHN HO IN RAMDAN WITH YOUR FAMILY 
+            ALLAH PAK APKO HAR WO KHUSHI DY JISKI APKY DUA KI HAI BAKI AP MUJHY NOTES MAI SY KUCH BHEJ SAKTI HO IF YOU THINK THIS IS 5 OUT OF 10! 💖</p>
+        
+    </div>
+    
+    
+    <script>
+        let slideIndex = 0;
+        function showSlide(index) {
+            const slides = document.querySelector('.slides');
+            const totalSlides = document.querySelectorAll('.slides img').length;
+            if (index >= totalSlides) { slideIndex = 0; }
+            if (index < 0) { slideIndex = totalSlides - 1; }
+            slides.style.transform = `translateX(${-slideIndex * 100}%)`;
+        }
+        function nextSlide() {
+            slideIndex++;
+            showSlide(slideIndex);
+        }
+        function prevSlide() {
+            slideIndex--;
+            showSlide(slideIndex);
+        }
+        function goToPage(pageId) {
+            document.getElementById('home').style.display = 'none';
+            document.getElementById('message').style.display = 'none';
+            document.getElementById('surprise').style.display = 'none';
+            document.getElementById('gallery').style.display = 'none';
+            document.getElementById('home2').style.display = 'none';
+            document.getElementById(pageId).style.display = 'block';
+
+        }
+    </script>
+</body>
+</html>
